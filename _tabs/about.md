@@ -1,8 +1,3 @@
----
-# the default layout is 'page'
-icon: fas fa-info-circle
-order: 4
----
 <h1 align="center">Hi 👋, I'm potato</h1>
 <h3 align="center">A passionate backend developer from Iran <: </h3>
 
