@@ -14,7 +14,7 @@ timezone: Asia/Tehran
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: thepotato 
+title: thepotato # the main title
 
 tagline: A text-focused Jekyll theme # it will display as the subtitle
 
@@ -23,7 +23,7 @@ tagline: A text-focused Jekyll theme # it will display as the subtitle
 
 # Fill in the protocol & hostname for your site.
 # E.g. 'https://username.github.io', note that it does not end with a '/'.
-url: "thepotato0.github.io"
+url: "https://thepotato0.github.io"
 
 github:
   username: thepotato0 # change to your GitHub username
