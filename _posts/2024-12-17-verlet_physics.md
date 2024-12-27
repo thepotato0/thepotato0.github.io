@@ -2,7 +2,7 @@
 layout: post
 title: verlet physics
 date: 17-12-2024
-categories: [project]
+categories: [projects]
 tag: [python,c++,pygame]
 ---
 
