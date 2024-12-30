@@ -1,6 +1,6 @@
 ---
-title: Customize the Favicon
-author: cotes
+title: Customize the Favicon (updated)
+author: cotes,potato
 date: 2024-12-25
 categories: [blogging, tutorial]
 tags: [favicon]
