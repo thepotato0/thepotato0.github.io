@@ -1,12 +1,10 @@
 ---
-layout: post
 title: Pov-ray
 author: potato
-toc: false                       
-date:2025-06-22
-categories: [blogging,applications,pov-ray]
+date: 2025-06-22
+categories: [blogging,applications]
 tags: [other]
---- 
+---
 ### recently, i came across a rendering program called POV-ray [in this video by shaneful](https://www.youtube.com/watch?v=yA24MVtBxcs)
 
 # what is POV-ray ?
