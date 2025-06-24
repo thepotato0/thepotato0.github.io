@@ -1,8 +1,8 @@
 ---
 layout: post
-title: Pov-ray the underrated rendering program 
+title: Pov-ray
 author: potato
-toc: false
+toc: false                       
 date:2025-06-22
 categories: [blogging,applications,pov-ray]
 tags: [other]
