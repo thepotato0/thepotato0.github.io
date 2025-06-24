@@ -1,5 +1,5 @@
 ---
-title: Pov-ray
+title: Pov-ray the underrated rendering program
 author: potato
 date: 2025-06-22
 categories: [blogging,applications]
