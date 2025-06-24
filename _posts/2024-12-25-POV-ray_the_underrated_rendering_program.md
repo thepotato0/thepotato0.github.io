@@ -5,7 +5,7 @@ date:2025-06-22
 categories: [blogging,applications,pov-ray]
 tags: [other]
 --- 
-recently, i came across a rendering program called POV-ray [in this video by shaneful](https://www.youtube.com/watch?v=yA24MVtBxcs)
+### recently, i came across a rendering program called POV-ray [in this video by shaneful](https://www.youtube.com/watch?v=yA24MVtBxcs)
 
 # what is POV-ray ?
 The Persistence of Vision Ray Tracer, most commonly acronymed as POV-Ray, is a cross-platform ray-tracing program that generates images from a text-based scene description. It was originally based on DKBTrace, written by David Kirk Buck and Aaron A. Collins for Amiga computers.
