@@ -2,6 +2,7 @@
 layout: post
 title: Pov-ray the underrated rendering program 
 author: potato
+toc: false
 date:2025-06-22
 categories: [blogging,applications,pov-ray]
 tags: [other]
