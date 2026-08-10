@@ -1,122 +1,414 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>thepotato0 — Python Automation Developer</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<title>thepotato0</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="thepotato0 — Python automation developer. Scripts, scrapers, and small tools that do the repetitive work.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #FAFAF8;
+    --panel: #F1EFE9;
+    --ink: #1C1C1A;
+    --muted: #6E6D64;
+    --line: #DEDBD0;
+    --accent: #4B6B4E;
+    --accent-soft: #E4EAE1;
+    --mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    --sans: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --sidebar-w: 250px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body{
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  a:focus-visible, button:focus-visible, summary:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  /* ---------- Sidebar ---------- */
+  .sidebar{
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    width: var(--sidebar-w);
+    padding: 40px 28px;
+    border-right: 1px solid var(--line);
+    background: var(--panel);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow-y: auto;
+  }
+
+  .brand-name{
+    font-family: var(--mono);
+    font-weight: 600;
+    font-size: 1.35rem;
+    letter-spacing: -0.02em;
+    margin: 0 0 4px;
+  }
+
+  .brand-role{
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin: 0 0 32px;
+  }
+
+  .sidebar nav ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .sidebar nav a{
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 0.9rem;
+    color: var(--ink);
+    padding: 7px 8px;
+    border-radius: 4px;
+    text-decoration: none;
+  }
+
+  .sidebar nav a .prompt{
+    color: var(--accent);
+    opacity: 0.55;
+  }
+
+  .sidebar nav a:hover,
+  .sidebar nav a:focus-visible{
+    background: var(--accent-soft);
+    outline: none;
+  }
+  .sidebar nav a:hover .prompt,
+  .sidebar nav a:focus-visible .prompt{
+    opacity: 1;
+  }
+
+  .sidebar-footer{
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+  .sidebar-footer a { display: block; margin-top: 4px; color: var(--muted); }
+  .sidebar-footer a:hover { color: var(--accent); }
+
+  /* mobile toggle (checkbox hack, no JS) */
+  .nav-toggle { display: none; }
+  .nav-toggle-label { display: none; }
+
+  /* ---------- Main content ---------- */
+  main{
+    margin-left: var(--sidebar-w);
+    max-width: 720px;
+    padding: 64px 48px 96px;
+  }
+
+  section { padding-top: 24px; scroll-margin-top: 32px; }
+  section + section { margin-top: 56px; }
+
+  .eyebrow{
+    display: block;
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .eyebrow::before{ content: "// "; color: var(--muted); }
+
+  h2{
+    font-family: var(--mono);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 18px;
+    letter-spacing: -0.01em;
+  }
+
+  p { color: var(--ink); margin: 0 0 12px; }
+  #about p { color: #3A3A35; max-width: 60ch; }
+
+  /* Skills */
+  .skills-grid{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    border-top: 1px solid var(--line);
+  }
+  .skill-row{
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .skill-row dt{
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
+  .skill-row dd{
+    margin: 0;
+    font-size: 0.95rem;
+  }
+
+  /* Projects */
+  .project{
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 20px 22px;
+    margin-bottom: 16px;
+    background: #fff;
+  }
+  .project h3{
+    margin: 0 0 6px;
+    font-size: 1.02rem;
+    font-weight: 600;
+  }
+  .project h3 a { color: var(--ink); }
+  .project h3 a:hover { color: var(--accent); }
+  .archived-tag{
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--muted);
+    font-weight: 400;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 1px 6px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+  .project p{ color: #4A4A44; margin-bottom: 10px; font-size: 0.94rem; }
+
+  .project summary{
+    cursor: pointer;
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--muted);
+    width: fit-content;
+  }
+  .project summary:hover { color: var(--accent); }
+  .badges{ margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .badges img{ display: block; height: 20px; }
+
+  .see-all{ font-family: var(--mono); font-size: 0.88rem; margin-top: 8px; }
+
+  /* Contact */
+  address{ font-style: normal; }
+  .contact-list{ list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+  .contact-list li{ font-size: 0.95rem; }
+  .contact-list .label{ font-family: var(--mono); color: var(--muted); font-size: 0.8rem; display: inline-block; width: 70px; }
+
+  footer.page-footer{
+    margin-left: var(--sidebar-w);
+    padding: 24px 48px 48px;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html { scroll-behavior: auto; }
+  }
+
+  /* Hide visible scrollbars, keep scrolling functional */
+  html, .sidebar {
+    scrollbar-width: none;       /* Firefox */
+    -ms-overflow-style: none;    /* old Edge/IE */
+  }
+  html::-webkit-scrollbar, .sidebar::-webkit-scrollbar {
+    display: none;               /* Chrome/Safari/new Edge */
+  }
+
+  /* ---------- Mobile ---------- */
+  @media (max-width: 860px){
+    :root{ --sidebar-w: 0px; }
+
+    .sidebar{
+      position: static;
+      width: 100%;
+      height: auto;
+      border-right: none;
+      border-bottom: 1px solid var(--line);
+      padding: 20px 24px;
+    }
+
+    .brand-role{ margin-bottom: 16px; }
+
+    .nav-toggle-label{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      color: var(--accent);
+      padding: 6px 0;
+    }
+    .nav-toggle-label::after{ content: "+"; font-size: 1rem; }
+    .nav-toggle:checked ~ .nav-toggle-label::after{ content: "–"; }
+
+    .sidebar nav{
+      max-height: 0;
+      overflow: hidden;
+    }
+    .nav-toggle:checked ~ nav{
+      max-height: 400px;
+    }
+
+    .sidebar-footer{ margin-top: 16px; }
+
+    main, footer.page-footer{
+      margin-left: 0;
+      padding: 40px 24px 64px;
+    }
+
+    .skill-row{ grid-template-columns: 110px 1fr; }
+  }
+</style>
 </head>
 <body>
 
-  <header>
-    <h1>Thepotato</h1>
-    <p>Python automation developer</p>
-    <nav>
-      <a href="#about">About</a> |
-      <a href="#skills">Skills</a> |
-      <a href="#projects">Projects</a> |
-      <a href="#contact">Contact</a>
-    </nav>
-    <hr>
-  </header>
+  <div class="sidebar">
+    <div>
+      <p class="brand-name">thepotato0</p>
+      <p class="brand-role">Python automation developer</p>
+
+      <input type="checkbox" id="nav-toggle" class="nav-toggle">
+      <label for="nav-toggle" class="nav-toggle-label">Menu</label>
+
+      <nav aria-label="Section navigation">
+        <ul>
+          <li><a href="#about"><span class="prompt">&gt;</span> about</a></li>
+          <li><a href="#skills"><span class="prompt">&gt;</span> skills</a></li>
+          <li><a href="#projects"><span class="prompt">&gt;</span> projects</a></li>
+          <li><a href="#contact"><span class="prompt">&gt;</span> contact</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="sidebar-footer">
+      <span>© 2026</span>
+      <a href="https://github.com/thepotato0">github.com/thepotato0</a>
+    </div>
+  </div>
 
   <main>
 
     <section id="about">
-      <h2>About</h2>
+      <span class="eyebrow">about</span>
+      <h2>Hi, I'm thepotato0.</h2>
       <p>
-        Hi, I'm thepotato.
-        I like automating stuff that are hard,repetitive or impossible to do by hand. I mainly use Python for my projects, but I also have experience with other languages and tools.
+        I like automating stuff that's hard, repetitive, or impossible to do by hand.
+        I mainly use Python for my projects, but I also have experience with other
+        languages and tools.
       </p>
     </section>
 
-    <hr>
-
     <section id="skills">
-      <h2>Skills</h2>
-      <table border="1" cellpadding="6" cellspacing="0">
-        <thead>
-          <tr>
-            <th>Category</th>
-            <th>Tools</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Languages</td>
-            <td>Python , C , C#</td>
-          </tr>
-          <tr>
-            <td>Automation</td>
-            <td>Video/audio processing, web scraping, browser automation</td>
-          </tr>
-          <tr>
-            <td>Integrations</td>
-            <td>Discord Rich Presence, Reddit API</td>
-          </tr>
-          <tr>
-            <td>Libraries and tools</td>
-            <td>Manim,Praw,Pygame,Discord-rpc,ffmpeg,whisper,python-dotenv,Kdenlive,Godot</td>
-          </tr>
-        </tbody>
-      </table>
+      <span class="eyebrow">skills</span>
+      <h2>What I work with</h2>
+      <dl class="skills-grid">
+        <div class="skill-row">
+          <dt>Languages</dt>
+          <dd>Python, C, C#</dd>
+        </div>
+        <div class="skill-row">
+          <dt>Automation</dt>
+          <dd>Video/audio processing, web scraping, browser automation</dd>
+        </div>
+        <div class="skill-row">
+          <dt>Integrations</dt>
+          <dd>Discord Rich Presence, Reddit API</dd>
+        </div>
+        <div class="skill-row">
+          <dt>Libraries &amp; tools</dt>
+          <dd>Manim, Praw, Pygame, Discord-rpc, ffmpeg, whisper, python-dotenv, Kdenlive, Godot</dd>
+        </div>
+      </dl>
     </section>
 
-    <hr>
-
     <section id="projects">
-      <h2>Pinned Projects</h2>
+      <span class="eyebrow">projects</span>
+      <h2>Pinned projects</h2>
 
-      <article>
-        <h3><a href="https://github.com/thepotato0/yt-story-short-maker">yt-story-short-maker</a> <small>(archived)</small></h3>
+      <article class="project">
+        <h3><a href="https://github.com/thepotato0/yt-story-short-maker">yt-story-short-maker</a><span class="archived-tag">archived</span></h3>
         <p>A program that automatically makes short videos from Reddit stories, complete with subtitles.</p>
         <details>
-          <summary>Details</summary>
-          <p>Language: <code>Python</code> · ⭐ 6 stars · 🍴 1 fork</p>
+          <summary>Repo details</summary>
+          <div class="badges">
+            <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/thepotato0/yt-story-short-maker?style=flat-square&color=4B6B4E&labelColor=1C1C1A">
+            <img alt="GitHub forks" src="https://img.shields.io/github/forks/thepotato0/yt-story-short-maker?style=flat-square&color=4B6B4E&labelColor=1C1C1A">
+          </div>
         </details>
       </article>
 
-      <article>
+      <article class="project">
         <h3><a href="https://github.com/thepotato0/Brand-guardian">Brand-guardian</a></h3>
         <p>An automatic brand-monitoring script built in Python.</p>
         <details>
-          <summary>Details</summary>
-          <p>Language: <code>Python</code> · ⭐ 2 stars</p>
+          <summary>Repo details</summary>
+          <div class="badges">
+            <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/thepotato0/Brand-guardian?style=flat-square&color=4B6B4E&labelColor=1C1C1A">
+            <img alt="GitHub forks" src="https://img.shields.io/github/forks/thepotato0/Brand-guardian?style=flat-square&color=4B6B4E&labelColor=1C1C1A">
+          </div>
         </details>
       </article>
 
-      <article>
+      <article class="project">
         <h3><a href="https://github.com/thepotato0/Verlet-python">Verlet-python</a></h3>
         <p>A reimplementation of Pezza's work on Verlet integration, made in Python.</p>
         <details>
-          <summary>Details</summary>
-          <p>Language: <code>Python</code> · ⭐ 1 star</p>
+          <summary>Repo details</summary>
+          <div class="badges">
+            <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/thepotato0/Verlet-python?style=flat-square&color=4B6B4E&labelColor=1C1C1A">
+            <img alt="GitHub forks" src="https://img.shields.io/github/forks/thepotato0/Verlet-python?style=flat-square&color=4B6B4E&labelColor=1C1C1A">
+          </div>
         </details>
       </article>
 
-      <article>
-        <h3><a href="https://github.com/thepotato0/Soundvia-RichPresence">Soundvia-RichPresence</a></h3>
-        <p>Python integration of Soundvia and Discord Rich Presence.</p>
-        <details>
-          <summary>Details</summary>
-          <p>Language: <code>Python</code> · ⭐ 1 star</p>
-        </details>
-      </article>
-
-      <p><a href="https://github.com/thepotato0?tab=repositories">See all of my repositories on GitHub →</a></p>
+      <p class="see-all"><a href="https://github.com/thepotato0?tab=repositories">See all repositories on GitHub →</a></p>
     </section>
 
     <section id="contact">
-      <h2>Contact</h2>
+      <span class="eyebrow">contact</span>
+      <h2>Get in touch</h2>
       <address>
-        Email: <a href="mailto:thepotato0@proton.me">thepotato0@proton.me</a><br>
-        Matrix: @thepotato0:matrix.org<br>
-        GitHub: <a href="https://github.com/thepotato0">github.com/thepotato0</a>
+        <ul class="contact-list">
+          <li><span class="label">Email</span> <a href="mailto:thepotato0@proton.me">thepotato0@proton.me</a></li>
+          <li><span class="label">Matrix</span> <a href="https://matrix.org">@thepotato0:matrix.org</a></li>
+          <li><span class="label">GitHub</span> <a href="https://github.com/thepotato0">github.com/thepotato0</a></li>
+        </ul>
       </address>
     </section>
 
   </main>
 
-  <hr>
+  <footer class="page-footer">
+    Deployed to Github pages.
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/thepotato0/thepotato0.github.io?style=flat-square&color=4B6B4E&labelColor=1C1C1A" style="vertical-align: middle; margin-left: 8px; height: 18px;">
+  </footer>
 
 </body>
 </html>
