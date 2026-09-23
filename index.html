@@ -7,7 +7,7 @@
 <meta name="description" content="thepotato0">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg: #FAFAF8;
@@ -17,8 +17,9 @@
     --line: #DEDBD0;
     --accent: #4B6B4E;
     --accent-soft: #E4EAE1;
+    --accent-complement: #6B4B68;
     --mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
-    --sans: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --sans: 'DM Sans', ui-sans-serif, system-ui, -apple-system, sans-serif;
     --sidebar-w: 250px;
   }
 
@@ -218,6 +219,8 @@
   .contact-list{ list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
   .contact-list li{ font-size: 0.95rem; }
   .contact-list .label{ font-family: var(--mono); color: var(--muted); font-size: 0.8rem; display: inline-block; width: 70px; }
+  .contact-list .value,
+  .contact-list a{ color: var(--accent-complement); }
 
   footer.page-footer{
     margin-left: var(--sidebar-w);
@@ -411,7 +414,7 @@
       <h2>Get in touch</h2>
       <address>
         <ul class="contact-list">
-          <li><span class="label">Email</span> <a href="mailto:thepotato0@proton.me">thepotato0@proton.me</a></li>
+          <li><span class="label">Email</span> <span class="value">thepotato0[At]proton[Dot]me</span></li>
           <li><span class="label">Matrix</span> <a href="https://matrix.org/try-matrix/">@the_potato0:matrix.org</a></li>
           <li><span class="label">GitHub</span> <a href="https://github.com/thepotato0">github.com/thepotato0</a></li>
         </ul>
